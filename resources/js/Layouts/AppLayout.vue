@@ -206,8 +206,26 @@ const logout = () => {
                 <!-- Responsive Navigation Menu -->
                 <div :class="{'block': showingNavigationDropdown, 'hidden': ! showingNavigationDropdown}" class="sm:hidden">
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
+                        <ResponsiveNavLink v-if="$page.props.user.permissions.includes('read lessons')" :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink v-if="$page.props.user.permissions.includes('read categories')" :href="route('categories.index')" :active="route().current('categories.*')">
+                            Categories
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink v-if="$page.props.user.permissions.includes('read lessons')" :href="route('lessons.index')" :active="route().current('lessons.*')">
+                            Lessons
+                        </ResponsiveNavLink>
+                    </div>
+
+                    <div class="pt-2 pb-3 space-y-1">
+                        <ResponsiveNavLink v-if="$page.props.user.permissions.includes('read roles')" :href="route('roles.index')" :active="route().current('roles.index')">
+                            Roles
                         </ResponsiveNavLink>
                     </div>
 
