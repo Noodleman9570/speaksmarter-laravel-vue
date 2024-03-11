@@ -37,7 +37,6 @@ const deleteCategory = id => {
                         <div class="flex justify-between">
                             <Link :href="route('categories.create')" class="text-white bg-indigo-500 hover:bg-indigo-700 rounded py-2 px-4">
                                 CREATE CATEGORY
-                                {{ categories }}
                             </Link>
                         </div>
                     </div>

@@ -1,19 +1,19 @@
 <script>
 export default {
-    name: 'CategoriesForm'
+    name: 'CategoryForm'
 }
 </script>
 
 <script setup>
 import FormSection from '@/Components/FormSection.vue'
 import InputError from '@/Components/InputError.vue'
-import InputLable from '@/Components/InputLabel.vue'
+import InputLabel from '@/Components/InputLabel.vue'
 import PrimaryButton from '@/Components/PrimaryButton.vue'
 import TextInput from '@/Components/TextInput.vue'
 
     defineProps({
         form: {
-            type: object,
+            type: Object,
             required: true
         },
         updating: {
