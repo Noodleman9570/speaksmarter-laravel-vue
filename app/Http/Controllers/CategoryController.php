@@ -9,12 +9,13 @@ use Inertia\Response;
 
 class CategoryController extends Controller
 {
+    const NUMBER_OF_ITEMS_PER_PAGE = 25;
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::paginate(25);
+        $categories = Category::paginate(self::NUMBER_OF_ITEMS_PER_PAGE);
         return inertia('Categories/Index', ['categories' => $categories]);
     }
 
@@ -34,7 +35,7 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         Category::create($request->validated());
-        return redirect()->route('category.index');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -47,25 +48,37 @@ class CategoryController extends Controller
 
     /**
      * Show the form for editing the specified resource.
+     * 
+     * @param Category $category
+     * @return \Illuminate\Http\Response
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        return inertia('Categories/Edit', ['category' => $category]);
     }
 
     /**
      * Update the specified resource in storage.
+     * 
+     * @param App\Http\Requests\CategoryRequest $request
+     * @param Category $category
+     * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, string $id)
+    public function update(CategoryRequest $request, Category $category)
     {
-        //
+        $category->update($request->validate());
+        return redirect()->route('categories.index');
     }
 
     /**
      * Remove the specified resource from storage.
+     * 
+     * @param Category $category
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(string $id)
+    public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->route('categories.index');
     }
 }
